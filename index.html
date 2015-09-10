@@ -51,7 +51,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         $.getJSON(item.info, function (data) {
                             $.each(data.query.pages, function (i, item2) {
                                 var dead = 0;
-                                console.log(item2);
                                 var name = item2.title;
                                 var text = item2.revisions[0]["*"];
                                 var index = text.search('birth_date');
@@ -67,17 +66,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         }
                                         j++;
                                     }
-                                    console.log(birthDate);
+                                    //console.log(birthDate);
                                 }
                                 var deathIndex = text.match('death_date( )*=( )*{{');
-                                console.log(deathIndex);
                                 var deathDate = "Continua con vida...";
                                 var deathDateString;
                                 if (deathIndex) {
                                     index = text.search(deathIndex[0]);
-                                    console.log("Index: "+index);
                                     deathParse = text.substr(index);
-                                    console.log("DeathParse: "+deathParse);
                                     deathDateString = deathParse.substring(deathParse.indexOf('{{') + 2, deathParse.indexOf('}}'));
                                     var deathDates = deathDateString.split("|");
                                     var k = 0;
@@ -89,15 +85,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         }
                                         k++;
                                     }
-                                    console.log(deathDate);
+                                    //console.log(deathDate);
                                 }
                                 // spanish dates
                                 if(!deathIndex && text.match(/muerte( )*=( )*\[\[/i)) {
                                     dead = 1;
                                     index = text.search(/muerte( )*=( )*\[\[/i);
-                                    console.log("Index: "+index);
                                     deathParse = text.substr(index);
-                                    console.log(deathParse);
                                     deathDateString = deathParse.substring(deathParse.indexOf('[[') + 2, deathParse.indexOf(']]') + 14);
                                     deathDateString = deathDateString.replace(/\[/g,'').replace(/\]/g,'');
                                     if(deathDateString) {
@@ -143,7 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     $handler.wookmark(options);
 
                     var ident = $(this).attr('id');
-                    var filtros = [ident];
+                    var filtros = ident != "todos" ? [ident] : [];
                     $handler.wookmarkInstance.filter(filtros);
                 })
             });
