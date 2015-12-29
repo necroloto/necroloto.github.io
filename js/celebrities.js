@@ -222,7 +222,7 @@ var celebrityWikiURL = {
         photo: 'Nancy_Reagan.jpg'
     },
     35: {
-        info: 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Lemmy_Kilmister&prop=revisions&rvprop=content&rvsection=0&callback=?',
+        info: 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Lemmy&prop=revisions&rvprop=content&rvsection=0&callback=?',
         owner: 'blimpa',
         special: 'none',
         photo: 'Lemmy_Kilmister.jpg'
